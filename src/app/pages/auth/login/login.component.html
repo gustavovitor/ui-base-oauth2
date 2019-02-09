@@ -1,0 +1,19 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-fluid">
+    <form ngForm #formLogin (ngSubmit)="login()">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-fluid">
+          <label>Usuário</label>
+          <input pInputText [(ngModel)]="user.email" type="text" #usuario required name="usuario"  />
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <label>Senha</label>
+          <input pInputText [(ngModel)]="user.senha" type="password" #password required name="senha" />
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <button pButton label="Entrar" type="submit"></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthUserForm } from '../../core/model/security/auth-user';
+import { promise } from 'selenium-webdriver';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +14,7 @@ export class AuthService {
   }
 
   URL = environment.WebServiceList.URLAuth;
+  URLUser = environment.WebServiceList.URLUser;
   jwtPayLoad: any;
 
   /* loadToken é responsável por carregar o token do localstorage caso já haja um, e injeta-o no serviço. */
@@ -28,6 +30,12 @@ export class AuthService {
   private saveToken(token: string) {
     this.jwtPayLoad = this.jwtHelper.decodeToken(token);
     localStorage.setItem('access_token', token);
+  }
+
+  register(user: AuthUserForm): Promise<void> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic b2F1dGgyLWNsaWVudC1hcGk6KlkqJWJYUSM8NSxwfltWazliYiYmWDlyc3c3Vn5KYF8=');
+    return this.http.post<any>(`${this.URLUser}/register`, user, { headers, withCredentials: true }).toPromise();
   }
 
   /** login responsável pelo login e armazenamento do token.

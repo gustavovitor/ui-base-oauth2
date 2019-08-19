@@ -8,6 +8,7 @@ export const environment = {
 
   WebServiceList: {
     URLAuth: PrimaryWebService + 'oauth/token',
+    URLUser: PrimaryWebService + 'user',
     URLLogout: PrimaryWebService + 'token/revoke'
   },
 

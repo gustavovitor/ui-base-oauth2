@@ -28,15 +28,7 @@ export class LoginComponent implements OnInit {
     ])]
   });
 
-  ngOnInit() {
-    this.initialCheck();
-  }
-
-  initialCheck() {
-    if(!this.auth.isAccessTokenInvalid) {
-      this.router.navigate(['']);
-    }
-  }
+  ngOnInit() { }
 
   login() {
     this.submited = true;

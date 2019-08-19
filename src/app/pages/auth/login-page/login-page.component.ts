@@ -7,11 +7,16 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+  page = 'login';
 
   constructor(private title: Title) { }
 
   ngOnInit() {
     this.title.setTitle('Login Page');
+  }
+
+  userRegistered() {
+    this.page = 'login';
   }
 
 }

@@ -23,8 +23,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'principal',
+        redirectTo: 'init',
         pathMatch: 'full'
+      },
+      {
+        path: 'init',
+        loadChildren: './init/init.module#InitModule'
       }
     ],
   }

@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ButtonModule, InputTextModule } from 'primeng/primeng';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    NgBootstrapFormValidationModule,
+    NgbTooltipModule
   ],
   exports: [
     CommonModule,
     FormsModule,
-    InputTextModule,
-    ButtonModule
+    ReactiveFormsModule,
+    NgBootstrapFormValidationModule,
+    NgbTooltipModule
   ]
 })
 export class SharedModule { }

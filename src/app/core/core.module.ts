@@ -6,13 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
 
 import { environment } from '../../environments/environment';
-import { MessageService } from 'primeng/api';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../services/security/auth.service';
 import { BaseHttp } from '../services/security/base-http';
-import { ToastModule } from 'primeng/toast';
 import { AuthGuard } from '../services/security/guard/auth.guard';
 import { LogoutService } from '../services/security/logout.service';
+import { CUSTOM_ERROR_MESSAGES, NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CUSTOM_ERRORS } from './validation-messages';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -24,29 +25,25 @@ export function tokenGetter() {
     BrowserModule,
     BrowserAnimationsModule,
 
-    JwtModule.forRoot({
-      config: {
-        tokenGetter,
-        whitelistedDomains: environment.TokenWhitelistedDomains,
-        blacklistedRoutes: environment.TokenBlacklistedRoutes
-      }
-    }),
+    NgbModule,
 
-    HttpClientModule
-  ],
-  exports: [
-    ToastModule
+    HttpClientModule,
+    NgBootstrapFormValidationModule.forRoot()
   ],
   declarations: [],
   providers: [
-    MessageService,
-
     HttpClient,
     BaseHttp,
 
     AuthService,
     LogoutService,
-    AuthGuard
+    AuthGuard,
+
+    {
+      provide: CUSTOM_ERROR_MESSAGES,
+      useValue: CUSTOM_ERRORS,
+      multi: true
+    }
   ]
 })
 export class CoreModule { }

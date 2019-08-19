@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { environment } from '../../../environments/environment';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorHandlerService {
 
-  constructor(private messageService: MessageService) { }
+  constructor(private toast: ToastrService) { }
 
   error(err: any) {
     let msg: string;
@@ -33,14 +33,8 @@ export class ErrorHandlerService {
 
   /* Mostra a mensagem de erro tratada. */
   private showErrorToast(msg: string) {
-    this.messageService.add({
-      severity: 'error',
-      summary: environment.ErrorSummaryMessages[
-        Math.floor(Math.random() * environment.ErrorSummaryMessages.length)
-        ],
-      detail: msg,
-      closable: true,
-      life: 10000
-    });
+    this.toast.error(msg, environment.ErrorSummaryMessages[
+      Math.floor(Math.random() * environment.ErrorSummaryMessages.length)
+      ]);
   }
 }
